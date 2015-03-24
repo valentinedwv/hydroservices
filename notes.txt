@@ -1,0 +1,31 @@
+gsconfig doc pasges:
+http://boundlessgeo.github.io/gsconfig/
+
+http://permalink.gmane.org/gmane.comp.gis.geoserver.user/20871
+ http://sharemymappingknowledge.blogspot.com/2013/01/uploading-coverages-to-geoserver-using.html
+
+
+virtual machines:
+http://hydroservices.cloudapp.net:8080/dashboard/
+
+http://hydroservices.cloudapp.net:8080/geoserver/web/
+
+
+curl -u admin:geoserver -v -XPOST -H "Content-type: application/xml"   \
+    -d "<coverageStore><name>logan__tiff</name><workspace>hydroshare_raster</workspace><enabled>true</enabled></coverageStore>"   \
+    http://hydroservices.cloudapp.net:8080/geoserver/rest/workspaces/hydroshare_raster/coveragestores
+
+curl -v -u admin:geoserver -XPUT -H "Content-type: image/tiff" \
+   --data-binary @logan.tif \
+   http://hydroservices.cloudapp.net:8080/geoserver/rest/workspaces/hydroshare_raster/coveragestores/logan__tiff/file.geotiff?configure=first\&coverageName=logan__tiff
+# note must be file.geotiff, and not filename.ti
+
+
+celery in django:
+    http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html#using-celery-with-django
+
+Geoserver:
+ Would it be possible to sub in some code to access iRods as a data directory? looks like yes.
+ https://github.com/geoserver/geoserver/wiki/GSIP%20106
+ https://github.com/geoserver/geoserver/wiki/ResourceStore-Design
+ https://github.com/geoserver/geoserver/tree/master/src/platform/src/main/java/org/geoserver/platform/resource

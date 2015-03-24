@@ -1,0 +1,38 @@
+Description:
+    Utilize Geoserver and other OpenGeo tools as a platform for exposing geographic information via services,
+    and the services are registered as available formats/access points in the resources
+    * geotiff  - WCS and WMS
+    * shapefiles - WFS/WMS
+    * excel/csv - WFS/WMS
+    * NetCDF -WCS/WMS
+    Use the HS data to populate the services description. eg title, creator, etc
+    Develop a set of tasks for the celery task queue so that when resources are registered they are created as
+    data sources/layers
+
+    In the initial prototype, files can be pushed to geoserver. In the future, irods should be mounted.
+
+    Initially, resources will be registered as individual resources. Plans on how to group resources into layers,
+    eg resources for a project, like shapefiles and monitoring sites from a group of resources.
+
+
+
+Initial steps:
+  * show that we can populate geoserver with file type X using the geoserver API
+    * collect a sample of data from hydroshare
+  * write tasks to implement file type X
+    * create
+    * update
+    * delete
+  * modify resource to create a task to publish a resource to geoserver
+
+Decisions:
+    Workspaces are a concept in geoserver. Workspace have data stores (vectors, images, etc)
+    Should workspaces be resources, by data type, or by group/projects
+
+    Individual resources
+        initially these will be Individual resources.
+
+    Future:
+        load a set of zipped files, eg the NFIE data as a project
+
+    Task naming:
